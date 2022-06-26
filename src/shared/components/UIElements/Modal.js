@@ -5,12 +5,12 @@ import { CSSTransition } from "react-transition-group";
 import React from "react";
 import ReactDOM from "react-dom";
 
-const ModalOvarlay = (props) => {
-	console.log("🚀 ~ file: Modal.js ~ line 9 ~ ModalOvarlay ~ props", props);
+const ModalOverlay = (props) => {
+	console.log("🚀 ~ file: Modal.js ~ line 9 ~ ModalOverlay ~ props", props);
 	const content = (
 		<div className={`modal ${props.className}`} style={props.style}>
 			<header className={`modal__header  ${props.headerClass}`}>
-				<h2>{props.title}</h2>
+				<h2>{props.header}</h2>
 			</header>
 			<form
 				onSubmit={
@@ -30,7 +30,6 @@ const ModalOvarlay = (props) => {
 };
 
 const Modal = (props) => {
-	console.log("🚀 ~ file: Modal.js ~ line 33 ~ Modal ~ props", props);
 	return (
 		<React.Fragment>
 			{props.show && <Backdrop onClick={props.onCancel} />}
@@ -41,7 +40,7 @@ const Modal = (props) => {
 				timeout={200}
 				className="modal"
 			>
-				<ModalOvarlay {...props} />
+				<ModalOverlay {...props} />
 			</CSSTransition>
 		</React.Fragment>
 	);
