@@ -14,7 +14,8 @@ import UserPlaces from "./places/pages/UserPlaces";
 import Users from "./user/pages/Users";
 
 const App = () => {
-	debugger;
+	const paramsId = useParams.id;
+	console.log("parmasId", paramsId);
 	return (
 		<Router>
 			<MainNavigation />
