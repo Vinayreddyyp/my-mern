@@ -3,9 +3,9 @@ import {
 	Route,
 	BrowserRouter as Router,
 	Switch,
-	useParams,
 } from "react-router-dom";
 
+import Auth from "./user/pages/Auth";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import NewPlace from "./places/pages/NewPlace";
 import React from "react";
@@ -14,8 +14,6 @@ import UserPlaces from "./places/pages/UserPlaces";
 import Users from "./user/pages/Users";
 
 const App = () => {
-	const paramsId = useParams.id;
-	console.log("parmasId", paramsId);
 	return (
 		<Router>
 			<MainNavigation />
@@ -32,6 +30,9 @@ const App = () => {
 					</Route>
 					<Route path="/places/:placeId">
 						<UpdatePlace />
+					</Route>
+					<Route path="/auth">
+						<Auth />
 					</Route>
 					<Redirect to="/" />
 				</Switch>
