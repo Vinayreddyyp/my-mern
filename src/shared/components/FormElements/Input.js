@@ -23,7 +23,6 @@ const inputReducer = (state, action) => {
 };
 
 const Input = (props) => {
-	debugger;
 	console.log("🚀 ~ file: Input.js ~ line 23 ~ Input ~ props", props);
 	const [inputState, dispatch] = useReducer(inputReducer, {
 		value: props.initialValue || "",
