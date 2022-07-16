@@ -9,7 +9,7 @@ import Modal from "../../shared/components/UIElements/Modal";
 
 const PlaceItem = (props) => {
 	console.log("🚀 ~ file: PlaceItems.js ~ line 11 ~ PlaceItem ~ props", props);
-
+	const [showConfirmModal, setShowConfirmModal] = useState(false);
 	const [showMap, setShowMap] = useState(false);
 	const openMapHandler = (e) => {
 		e.preventDefault();
@@ -19,6 +19,17 @@ const PlaceItem = (props) => {
 	const closeMapHandler = (e) => {
 		e.preventDefault();
 		setShowMap(false);
+	};
+
+	const showDeleteWarningHandler = () => {
+		setShowConfirmModal(true);
+	};
+	const cancelDeleteHandler = () => {
+		setShowConfirmModal(false);
+	};
+	const confirmDeleteHandler = () => {
+		setShowConfirmModal(false);
+		console.log("deleting the data form the app");
 	};
 
 	return (
@@ -35,6 +46,27 @@ const PlaceItem = (props) => {
 					<Map center={props.coordinates} zoom={16} />
 				</div>
 			</Modal>
+			<Modal
+				show={showConfirmModal}
+				onCancel={cancelDeleteHandler}
+				header="Are you Sure?"
+				footerClass="place-item__modal-actions"
+				footer={
+					<React.Fragment>
+						<Button inverse onClick={cancelDeleteHandler}>
+							CANCEL
+						</Button>
+						<Button danger onClick={confirmDeleteHandler}>
+							DELETE
+						</Button>
+					</React.Fragment>
+				}
+			>
+				<p>
+					Do you want to proceed and delete the place? please not that it is
+					completely deleted{" "}
+				</p>
+			</Modal>
 			<li className="place-item">
 				<Card className="place-item__content">
 					<div className="place-item__image">
@@ -50,7 +82,9 @@ const PlaceItem = (props) => {
 							VIEW ON MAP
 						</Button>
 						<Button to={`/places/${props.id}`}>EDIT</Button>
-						<Button danger>DELETE</Button>
+						<Button danger onClick={showDeleteWarningHandler}>
+							DELETE
+						</Button>
 					</div>
 				</Card>
 			</li>
