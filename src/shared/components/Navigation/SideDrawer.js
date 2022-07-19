@@ -5,8 +5,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 const SideDrawer = (props) => {
-	console.log("🚀 ~ file: SideDrawer.js ~ line 8 ~ SideDrawer ~ props", props);
-
 	const content = (
 		<CSSTransition
 			in={props.show}
