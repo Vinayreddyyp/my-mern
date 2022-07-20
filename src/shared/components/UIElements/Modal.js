@@ -6,7 +6,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 const ModalOverlay = (props) => {
-	console.log("🚀 ~ file: Modal.js ~ line 9 ~ ModalOverlay ~ props", props);
 	const content = (
 		<div className={`modal ${props.className}`} style={props.style}>
 			<header className={`modal__header  ${props.headerClass}`}>
