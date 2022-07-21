@@ -1,6 +1,5 @@
-import "./NewPlace.css";
+import "./PlaceForm.css";
 
-import React, { useCallback, useReducer } from "react";
 import {
 	VALIDATOR_MINLENGTH,
 	VALIDATOR_REQUIRE,
@@ -8,23 +7,27 @@ import {
 
 import Button from "../../shared/components/FormElements/Button";
 import Input from "../../shared/components/FormElements/Input";
-import useForm from "../../shared/hooks/form-hook";
+import React from "react";
+import { useForm } from "../../shared/hooks/form-hook";
 
 const NewPlace = () => {
-	const [formState, inputHandler] = useForm({
-		title: {
-			value: "",
-			isValid: false,
+	const [formState, inputHandler] = useForm(
+		{
+			title: {
+				value: "",
+				isValid: false,
+			},
+			description: {
+				value: "",
+				isValid: false,
+			},
+			address: {
+				value: "",
+				isValid: false,
+			},
 		},
-		description: {
-			value: "",
-			isValid: false,
-		},
-		address: {
-			value: "",
-			isValid: false,
-		},
-	});
+		false
+	);
 
 	return (
 		<form className="place-form ">
