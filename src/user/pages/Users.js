@@ -20,11 +20,9 @@ const Users = () => {
 		fetchUser();
 	}, [sendRequest]);
 
-	const errorHandler = () => {};
-
 	return (
 		<React.Fragment>
-			<ErrorModal error={error} onClear={errorHandler} />
+			<ErrorModal error={error} onClear={clearError} />
 			{isLoading && (
 				<div className="center">
 					<LoadingSpinner />
