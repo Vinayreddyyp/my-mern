@@ -18,6 +18,7 @@ import { useHttpClient } from "../../shared/hooks/http-hook";
 
 const Auth = () => {
 	const auth = useContext(AuthContext);
+
 	const [isLoginMode, setIsLoginMode] = useState(true);
 	const { isLoading, error, sendRequest, clearError } = useHttpClient();
 	console.log("sendRequest", sendRequest);
@@ -67,7 +68,7 @@ const Auth = () => {
 		if (isLoginMode) {
 			console.log("isLoginmode", isLoginMode);
 			try {
-				await sendRequest(
+				const responseData = await sendRequest(
 					"http://localhost:5000/api/users/login",
 					"POST",
 					JSON.stringify({
@@ -77,7 +78,7 @@ const Auth = () => {
 					{ "Content-Type": "application/json" }
 				);
 
-				auth.login();
+				auth.login(responseData.user.id);
 			} catch (err) {}
 		} else {
 			try {
