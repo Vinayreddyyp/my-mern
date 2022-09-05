@@ -11,6 +11,7 @@ import { AuthContext } from "../../shared/context/auth-context";
 import Button from "../../shared/components/FormElements/Button";
 import Card from "../../shared/components/UIElements/Card";
 import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 import Input from "../../shared/components/FormElements/Input";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import { useForm } from "../../shared/hooks/form-hook";
@@ -119,6 +120,7 @@ const Auth = () => {
 							onInput={inputHandler}
 						/>
 					)}
+					{!isLoginMode && <ImageUpload center id="" />}
 					<Input
 						element="input"
 						id="email"
@@ -133,7 +135,7 @@ const Auth = () => {
 						id="password"
 						type="password"
 						label="Password"
-						validators={[VALIDATOR_MINLENGTH(5)]}
+						validators={[VALIDATOR_MINLENGTH(6)]}
 						errorText="Please enter a valid password, at least 5 characters."
 						onInput={inputHandler}
 					/>
