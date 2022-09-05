@@ -5,13 +5,17 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../shared/context/auth-context";
 import Button from "../../shared/components/FormElements/Button";
 import Card from "../../shared/components/UIElements/Card";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import Map from "../../shared/components/UIElements/Map";
 import Modal from "../../shared/components/UIElements/Modal";
+import { useHttpClient } from "../../shared/hooks/http-hook";
 
 const PlaceItem = (props) => {
 	const auth = useContext(AuthContext);
 	const [showConfirmModal, setShowConfirmModal] = useState(false);
 	const [showMap, setShowMap] = useState(false);
+	const { isLoading, error, sendRequest, clearError } = useHttpClient();
 	const openMapHandler = (e) => {
 		e.preventDefault();
 		setShowMap(true);
@@ -28,13 +32,21 @@ const PlaceItem = (props) => {
 	const cancelDeleteHandler = () => {
 		setShowConfirmModal(false);
 	};
-	const confirmDeleteHandler = () => {
+	const confirmDeleteHandler = async () => {
 		setShowConfirmModal(false);
-		console.log("deleting the data form the app");
+		try {
+			await sendRequest(
+				`http://localhost:5000/api/places/${props.id}`,
+				"DELETE"
+			);
+			props.onDelete(props.id);
+		} catch (err) {}
 	};
 
 	return (
 		<React.Fragment>
+			<ErrorModal error={error} onClear={clearError} />
+			{isLoading && <LoadingSpinner />}
 			<Modal
 				show={showMap}
 				onCancel={closeMapHandler}
